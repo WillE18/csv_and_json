@@ -3,7 +3,6 @@ import json
 class CSV_To_Json:
     def __init__(self, csv_file):
         self.file_name = csv_file
-        self.data = self._get_sanitised_data()
         self.formatted_data = self._convert_data()
     def _sanitise(self, line):
         return line.replace('\n', '').split(',')
@@ -20,7 +19,7 @@ class CSV_To_Json:
             dict[header[i]] = entry[i]
         return dict
     def _convert_data(self):
-        return list(map(self._dict_convert, self.data))
+        return list(map(self._dict_convert, self._get_sanitised_data()))
     def convert_to_json(self):
         with open(self.file_name.replace('.csv', '.json'), 'w') as f:
             json.dump(self.formatted_data, f, indent=2)
