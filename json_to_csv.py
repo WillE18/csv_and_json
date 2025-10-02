@@ -20,5 +20,5 @@ class Json_to_CSV:
             for item in self._get_items():
                 f.write(self._format_line(item))
 
-csver = Json_to_CSV('grocery_chain_data.json')
+csver = Json_to_CSV('sample_data/grocery_chain_data.json')
 csver.convert_to_csv()

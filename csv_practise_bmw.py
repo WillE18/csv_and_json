@@ -25,7 +25,7 @@ class BMW_Data:
         yearly_data = self.get_yearly_data(year)
         return sum(int(item['Sales_Volume']) for item in yearly_data)
 
-data = BMW_Data('bmw_sales_data.csv')
+data = BMW_Data('sample_data/bmw_sales_data.csv')
 print(data.get_yearly_units_sold(2024))
 
 #Either the data is wrong, I'm misunderstanding the data, or something in my code is wrong

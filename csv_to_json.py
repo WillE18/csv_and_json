@@ -23,5 +23,5 @@ class CSV_To_Json:
         with open(self.file_name.replace('.csv', '.json'), 'w') as f:
             json.dump(self._get_converted_data(), f, indent=2)
 
-jsoner = CSV_To_Json('bmw_sales_data.csv')
+jsoner = CSV_To_Json('sample_data/bmw_sales_data.csv')
 jsoner.convert_to_json()

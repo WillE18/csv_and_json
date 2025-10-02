@@ -53,7 +53,7 @@ class Spotify(CSV_to_Dict):
         total = sum(int(user['songs_played_per_day']) for user in self.formatted_data)
         return round(total/self.get_user_count())
     
-spotify = Spotify('spotify_churn_dataset.csv')
+spotify = Spotify('sample_data/spotify_churn_dataset.csv')
 print(spotify.get_from_ages(16, 34))
 print(spotify.get_from_ages(48, jsonify=False))
 print(spotify.get_average_age())
