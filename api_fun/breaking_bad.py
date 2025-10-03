@@ -19,7 +19,7 @@ allowed_answers = {
 }
 
 def check_answer(answer, guess):
-    return guess.lower() in allowed_answers[answer]
+    return guess.strip().lower() in allowed_answers[answer]
 
 invalid_authors = ['Stephen King'] #for some reason the api returns a stephen king quote lmao
 

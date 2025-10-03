@@ -1,3 +1,5 @@
 .DS_Store
 personal_venv
 authtoken.txt
+spot_auths.json
+spotify_liked_songs.json
