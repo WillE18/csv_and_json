@@ -5,13 +5,18 @@ with open('spot_auths.json', 'r') as auths:
     obj = json.load(auths)
     token = obj['access_token']
 
+offset = 0
 liked_songs = []
 
-for o in range(0, 950, 50): #i know i have 946 songs
-    req = Request(f'https://api.spotify.com/v1/me/tracks?offset={o}&limit=50')
+complete = False
+while not complete:
+    req = Request(f'https://api.spotify.com/v1/me/tracks?offset={offset}&limit=50')
     req.add_header('Authorization', f'Bearer {token}')
     data = urlopen(req).read()
     converted_data = json.loads(data)['items']
+
+    if len(converted_data) == 0:
+        complete = True
 
     for song in converted_data:
         liked_songs.append({
@@ -20,7 +25,11 @@ for o in range(0, 950, 50): #i know i have 946 songs
             'artists:': [artist['name'] for artist in song['track']['artists']],
             'url': song['track']['external_urls']['spotify']
         })
-    print(f'{o+50} songs added so far')
+    
+    offset += 50
+
+    print(f'Songs added.')
 
 with open('spotify_liked_songs.json', 'a') as file:
     json.dump(liked_songs, file, indent=2)
+
